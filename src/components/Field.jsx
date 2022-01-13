@@ -4,6 +4,7 @@ import classes from './Field.module.css'
 const Field = ({data, onClick}) => {
 
     const mutate = () => {
+        if (data.active) return
         data.active = true
         data.player = 'HUMAN'
         onClick(data)

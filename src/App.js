@@ -20,6 +20,7 @@ function App() {
 
     const onClick = (field) => {
         if (winnerExist) return
+
         const mutableFields = [...fields]
         mutableFields.map(f => {
             if (f.id === field.id) {
@@ -41,13 +42,15 @@ function App() {
             setWinnerExist(true)
             const mutableFields = [...fields]
             const winnerLine = AI.getWinnerLineIfExists(mutableFields)
-            mutableFields.map(field => {
-                if (winnerLine.includes(field.id)) {
-                    field.winner = true
-                }
-                return field
-            })
-            setFields(mutableFields)
+            if (winnerLine) {
+                mutableFields.map(field => {
+                    if (winnerLine.includes(field.id)) {
+                        field.winner = true
+                    }
+                    return field
+                })
+                setFields(mutableFields)
+            }
         }
     }
 
